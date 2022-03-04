@@ -16,6 +16,10 @@ class UsersController extends Controller
             //未登录可以说使用
             'except' => ['show', 'create', 'store', 'index','confirmEmail']
         ]);
+
+        $this->middleware('throttle:10,60',[
+            'only' => ['store']
+        ]);
     }
 
     public function index()
